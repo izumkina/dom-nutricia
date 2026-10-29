@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Дом, где не спят</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one early-evening scene. Dusk sky behind a five-floor house (floor = stage of a mother's life, lit window = one moment), the opened window on the right, then every window as a list and the icom kit on the evening ground */
+:root {
+  --night: #1E2440;
+  --night-2: #283057;
+  --sky-top: #1E2440;
+  --sky-mid: #3F4580;
+  --sky-low: #8E74A8;
+  --horizon: #EE9F7C;
+  --sun: #FFD08A;
+  --roof: #2E3462;
+  --building: #3A3F6E;
+  --frame: #4B5287;
+  --win-dark: #646899;
+  --curtain-dark: #565B8D;
+  --cream: #F3EEDF;
+  --cream-2: #D5D9E8;
+  --muted: #B4BAD4;
+  --warm: #F4C46A;
+  --warm-2: #E2A94A;
+  --day: #F7DFA0;
+  --day-2: #E8C478;
+  --cool: #A9C6EC;
+  --cool-2: #86A9D6;
+  --sil: #141B2E;
+  --sil2: #3A4566;
+  --glow: #FFF4D6;
+  --moon: #F7E3A8;
+  --f-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --f-body: 'Golos Text', 'Segoe UI', system-ui, sans-serif;
+  --f-mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--night); color: var(--cream); font-family: var(--f-body); font-size: 16px; line-height: 1.5; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--night); }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--warm); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: 1200px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.mono { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+.topbar .wrap { display: flex; justify-content: space-between; gap: 16px; padding-block: 18px; color: var(--muted); border-bottom: 1px solid var(--frame); }
+
+.intro .wrap { padding-block: 44px 40px; display: flex; flex-direction: column; gap: 22px; }
+.intro h1 { margin: 0; font-family: var(--f-display); font-weight: 700; font-size: clamp(44px, 7vw, 84px); line-height: 0.98; text-wrap: balance; }
+.intro h1 em { font-style: italic; font-weight: 600; color: var(--warm); }
+.intro-lead { margin: 0; font-family: var(--f-display); font-size: clamp(20px, 2.3vw, 28px); line-height: 1.45; color: var(--cream); text-wrap: pretty; }
+.intro-hint { margin: 0; font-size: 17px; color: var(--warm); }
+
+.sky-zone { background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 38%, var(--sky-low) 72%, var(--horizon) 100%); }
+.scene .wrap { display: grid; grid-template-columns: minmax(0, 580px) minmax(0, 1fr); gap: 56px; align-items: start; padding-block: 8px 0; }
+
+.house { display: flex; flex-direction: column; min-width: 0; }
+.sky { display: block; width: 100%; height: 150px; }
+.scene .panel { margin-top: 150px; }
+.star { animation: twinkle 4s ease-in-out infinite; }
+.star:nth-child(2n) { animation-delay: 1.3s; }
+.star:nth-child(3n) { animation-delay: 2.6s; }
+@keyframes twinkle { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+.roof { height: 16px; background: var(--roof); margin-inline: -10px; }
+.building { background: var(--building); padding: 26px 22px 0; display: flex; flex-direction: column; gap: 18px; }
+.floor { display: grid; grid-template-columns: 40px repeat(3, minmax(0, 1fr)); gap: 18px; align-items: start; }
+.plate { margin-top: 30px; display: flex; flex-direction: column; align-items: center; gap: 2px; color: var(--muted); font-family: var(--f-mono); }
+.plate b { font-size: 22px; font-weight: 500; color: var(--cream-2); line-height: 1; }
+.plate span { font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; }
+.cell { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.glass { position: relative; aspect-ratio: 140 / 118; max-width: 100%; border: 5px solid var(--frame); background: var(--win-dark); overflow: hidden; }
+.glass::before, .glass::after { content: ""; position: absolute; top: 0; bottom: 0; width: 12%; background: var(--curtain-dark); }
+.glass::before { left: 0; }
+.glass::after { right: 0; }
+.glass svg { position: absolute; inset: 0; width: 100%; height: 100%; color: var(--sil); }
+.win { all: unset; cursor: pointer; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.win .glass { background: var(--lit); transition: box-shadow 0.25s ease, filter 0.25s ease; }
+.win .glass::before, .win .glass::after { background: var(--lit-2); }
+.win[data-tone="warm"] { --lit: var(--warm); --lit-2: var(--warm-2); }
+.win[data-tone="day"] { --lit: var(--day); --lit-2: var(--day-2); }
+.win[data-tone="cool"] { --lit: var(--cool); --lit-2: var(--cool-2); }
+.win:hover .glass { filter: brightness(1.07); box-shadow: 0 0 22px color-mix(in srgb, var(--lit) 45%, transparent); }
+.win[aria-pressed="true"] .glass { border-color: var(--lit); box-shadow: 0 0 0 2px var(--lit), 0 0 34px color-mix(in srgb, var(--lit) 60%, transparent); }
+.win:focus-visible { outline: 3px solid var(--warm); outline-offset: 4px; }
+.win-time { font-family: var(--f-mono); font-size: 12px; color: var(--lit); }
+.cell-gap { height: 18px; }
+.ground { height: 22px; background: var(--night); margin-inline: -10px; }
+
+.panel { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); background: var(--warm); color: var(--sil); border-radius: 8px; padding: 28px; display: flex; flex-direction: column; gap: 14px; min-width: 0; scroll-margin-top: 24px; }
+.panel[data-tone="day"] { background: var(--day); }
+.panel[data-tone="cool"] { background: var(--cool); }
+.panel-meta { color: #3A4566; }
+.panel h2 { margin: 0; font-family: var(--f-display); font-weight: 700; font-size: clamp(30px, 3.4vw, 42px); line-height: 1.08; text-wrap: balance; }
+.panel-story { margin: 0; font-size: 17px; color: #2A3350; max-width: 60ch; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-size: 14px; font-weight: 600; padding: 4px 12px; border-radius: 999px; background: var(--sil); color: var(--glow); }
+.rx-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.rx { padding-block: 14px; border-top: 1.5px dashed rgba(20, 27, 46, 0.35); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 16px; }
+.rx-text { min-width: 0; flex: 1 1 260px; }
+.rx-label { font-size: 11px; color: #4A3A12; }
+.rx-name { margin: 0; font-weight: 600; font-size: 17px; }
+.rx-why { margin: 0; font-size: 15px; color: #2A3350; }
+.rx-link, .rx-demo { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
+.rx-link { text-decoration: none; border-bottom: 1.5px solid currentColor; }
+.rx-link:hover { opacity: 0.75; }
+.rx-demo { border: 1px dashed currentColor; border-radius: 999px; padding: 2px 10px; opacity: 0.8; }
+.rx-tag { display: inline-block; vertical-align: 2px; margin-left: 6px; font-family: var(--f-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid currentColor; border-radius: 999px; padding: 1px 7px; }
+.panel-nav { display: flex; justify-content: space-between; gap: 12px; padding-top: 6px; border-top: 1.5px solid var(--sil); }
+.panel-nav button { background: none; border: none; cursor: pointer; padding: 10px 0; min-height: 44px; font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+.panel-nav button:hover { text-decoration: underline; }
+
+.list { border-top: 1px solid var(--frame); }
+.list .wrap { padding-block: 64px; display: flex; flex-direction: column; gap: 32px; }
+.section-title { margin: 0; font-family: var(--f-display); font-weight: 700; font-size: 40px; line-height: 1.05; }
+.section-lead { margin: -14px 0 0; font-family: var(--f-display); font-size: clamp(19px, 2vw, 24px); line-height: 1.45; color: var(--cream-2); text-wrap: pretty; }
+.floors { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px 40px; }
+.floor-block h3 { margin: 0 0 6px; font-size: 13px; color: var(--muted); font-family: var(--f-mono); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
+.row { all: unset; box-sizing: border-box; cursor: pointer; width: 100%; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 14px; padding: 12px 0; border-top: 1px solid var(--frame); }
+.row:hover .row-title { color: var(--warm); }
+.row-time { font-family: var(--f-mono); font-size: 15px; color: var(--warm); font-variant-numeric: tabular-nums; }
+.row-title { font-weight: 600; font-size: 16px; }
+.row-sub { font-size: 14px; color: var(--muted); }
+
+.kit { border-top: 1px solid var(--frame); }
+.kit .wrap { padding-block: 64px; display: flex; flex-direction: column; gap: 32px; }
+.kit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+.tool { background: var(--night-2); border: 1px solid var(--frame); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.tool h3 { margin: 0; font-size: 18px; font-weight: 600; }
+.tool p { margin: 0; font-size: 15px; color: var(--cream-2); }
+.tool-used { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.tool-used button { cursor: pointer; font-family: var(--f-mono); font-size: 12px; padding: 4px 10px; min-height: 30px; border-radius: 999px; border: 1px solid var(--frame); background: var(--building); color: var(--warm); }
+.tool-used button:hover { border-color: var(--warm); }
+.tool .rx-link, .tool .rx-demo { margin-top: auto; align-self: flex-start; color: var(--cream); }
+
+.footer { border-top: 1px solid var(--frame); }
+.footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; align-items: center; color: var(--muted); }
+.footer p { margin: 0; font-size: 15px; max-width: 60ch; }
+
+@media (max-width: 960px) {
+  .scene .wrap { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .house { max-width: 580px; width: 100%; margin-inline: auto; }
+  .panel { position: static; margin-bottom: 48px; }
+  .scene .panel { margin-top: 0; }
+}
+@media (max-width: 520px) {
+  .building { padding: 18px 12px 0; gap: 14px; }
+  .floor { grid-template-columns: 26px repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .plate { margin-top: 18px; }
+  .plate b { font-size: 16px; }
+  .plate span { display: none; }
+  .glass { border-width: 3px; }
+  .win-time { font-size: 10px; }
+  .panel { padding: 22px 18px; }
+  .floors { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .star { animation: none; }
+  .win .glass { transition: none; }
+}
+</style>
+
+<svg width="0" height="0" style="position: absolute" aria-hidden="true">
+  <symbol id="s-pregnant" viewBox="0 0 140 118">
+    <path d="M104 100 L122 100 L119 118 L107 118 Z" style="fill: var(--sil2)"></path>
+    <path d="M113 100 C104 88 104 78 110 70 C113 82 113 90 113 100 Z M113 100 C119 86 127 82 132 84 C125 90 119 96 113 100 Z" style="fill: var(--sil2)"></path>
+    <circle cx="53" cy="27" r="5" fill="currentColor"></circle>
+    <circle cx="62" cy="34" r="10" fill="currentColor"></circle>
+    <path d="M52 50 C56 44 70 44 74 50 C76 58 74 64 76 68 C90 74 96 88 90 100 C86 106 80 108 76 108 L78 118 L48 118 C50 96 48 70 52 50 Z" fill="currentColor"></path>
+    <path d="M58 56 C64 54 70 50 76 46" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"></path>
+    <rect x="74" y="34" width="9" height="14" rx="2" transform="rotate(-15 78 41)" style="fill: var(--glow)"></rect>
+  </symbol>
+  <symbol id="s-feeding" viewBox="0 0 140 118">
+    <path d="M104 30 L120 30 L116 18 L108 18 Z" style="fill: var(--sil2)"></path>
+    <rect x="111" y="30" width="2" height="40" style="fill: var(--sil2)"></rect>
+    <path d="M26 118 L26 70 C26 58 38 54 46 58 L46 82 L92 82 L92 58 C100 54 112 58 112 70 L112 118 Z" style="fill: var(--sil2)"></path>
+    <circle cx="54" cy="42" r="5" fill="currentColor"></circle>
+    <circle cx="62" cy="50" r="10" fill="currentColor"></circle>
+    <path d="M46 118 C46 84 52 64 64 64 C78 64 84 84 84 118 Z" fill="currentColor"></path>
+    <ellipse cx="82" cy="84" rx="16" ry="8" transform="rotate(-20 82 84)" fill="currentColor"></ellipse>
+    <rect x="68" y="66" width="6" height="16" rx="2" transform="rotate(50 71 74)" style="fill: var(--glow)"></rect>
+  </symbol>
+  <symbol id="s-colic" viewBox="0 0 140 118">
+    <path d="M54 34 C46 36 44 46 48 54 C50 46 52 42 56 40 Z" fill="currentColor"></path>
+    <circle cx="64" cy="40" r="11" fill="currentColor"></circle>
+    <path d="M44 118 C44 78 50 56 64 56 C80 56 86 78 86 118 Z" fill="currentColor"></path>
+    <circle cx="80" cy="45" r="8" fill="currentColor"></circle>
+    <ellipse cx="82" cy="64" rx="9" ry="14" fill="currentColor"></ellipse>
+    <path d="M30 60 q-8 10 0 20 M106 60 q8 10 0 20 M92 34 l6 -4 M94 41 l7 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path>
+  </symbol>
+  <symbol id="s-allergist" viewBox="0 0 140 118">
+    <rect x="102" y="18" width="24" height="28" style="fill: var(--sil2)"></rect>
+    <path d="M106 26 L122 26 M106 32 L122 32 M106 38 L116 38" fill="none" style="stroke: var(--lit)" stroke-width="2"></path>
+    <path d="M47 32 C47 20 69 18 69 30 L69 42 L47 42 Z" fill="currentColor"></path>
+    <circle cx="58" cy="36" r="10" fill="currentColor"></circle>
+    <path d="M40 118 C40 76 46 52 58 52 C72 52 78 76 78 118 Z" fill="currentColor"></path>
+    <circle cx="86" cy="64" r="8" fill="currentColor"></circle>
+    <ellipse cx="82" cy="82" rx="11" ry="13" fill="currentColor"></ellipse>
+    <path d="M48 64 C42 60 38 54 38 48" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"></path>
+    <rect x="31" y="34" width="10" height="15" rx="2" style="fill: var(--glow)"></rect>
+  </symbol>
+  <symbol id="s-tv" viewBox="0 0 140 118">
+    <rect x="102" y="54" width="32" height="22" rx="2" stroke="currentColor" stroke-width="3" style="fill: var(--glow)"></rect>
+    <path d="M118 76 L118 84 M110 84 L126 84" fill="none" stroke="currentColor" stroke-width="3"></path>
+    <path d="M8 118 L8 86 C8 80 14 78 20 80 L20 92 L84 92 L84 80 C90 78 96 80 96 86 L96 118 Z" style="fill: var(--sil2)"></path>
+    <circle cx="32" cy="74" r="9" fill="currentColor"></circle>
+    <path d="M24 94 C28 80 40 78 48 84 L82 90 L82 97 L24 97 Z" fill="currentColor"></path>
+  </symbol>
+  <symbol id="s-grandma" viewBox="0 0 140 118">
+    <rect x="58" y="18" width="24" height="18" style="fill: var(--sil2)"></rect>
+    <path d="M66 62 q-3 -5 0 -10 M72 62 q-3 -5 0 -10" fill="none" style="stroke: var(--sil2)" stroke-width="2" stroke-linecap="round"></path>
+    <rect x="14" y="84" width="112" height="5" fill="currentColor"></rect>
+    <rect x="22" y="89" width="4" height="29" fill="currentColor"></rect>
+    <rect x="114" y="89" width="4" height="29" fill="currentColor"></rect>
+    <path d="M60 84 C58 70 80 70 78 84 Z" fill="currentColor"></path>
+    <circle cx="69" cy="70" r="3" fill="currentColor"></circle>
+    <path d="M78 78 L86 72" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+    <rect x="40" y="78" width="8" height="6" rx="1" fill="currentColor"></rect>
+    <rect x="92" y="78" width="8" height="6" rx="1" fill="currentColor"></rect>
+    <circle cx="30" cy="40" r="5" fill="currentColor"></circle>
+    <circle cx="30" cy="50" r="9" fill="currentColor"></circle>
+    <path d="M16 84 C16 68 22 60 30 60 C38 60 44 68 44 84 Z" fill="currentColor"></path>
+    <path d="M116 44 C124 46 126 56 122 62 C120 56 118 52 114 50 Z" fill="currentColor"></path>
+    <circle cx="108" cy="50" r="10" fill="currentColor"></circle>
+    <path d="M94 84 C94 66 100 60 108 60 C116 60 122 66 122 84 Z" fill="currentColor"></path>
+    <circle cx="96" cy="70" r="6" fill="currentColor"></circle>
+  </symbol>
+  <symbol id="s-picky" viewBox="0 0 140 118">
+    <path d="M84 118 L92 78 M118 118 L110 78" fill="none" stroke="currentColor" stroke-width="3"></path>
+    <rect x="78" y="74" width="46" height="5" fill="currentColor"></rect>
+    <path d="M95 46 q5 -7 10 0" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
+    <circle cx="101" cy="56" r="10" fill="currentColor"></circle>
+    <path d="M91 74 C91 62 111 62 111 74 Z" fill="currentColor"></path>
+    <path d="M0 70 C20 66 50 64 70 62" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"></path>
+    <ellipse cx="77" cy="61" rx="7" ry="4" fill="currentColor"></ellipse>
+    <path d="M116 46 l8 -4 M117 54 l9 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path>
+  </symbol>
+  <symbol id="s-receipt" viewBox="0 0 140 118">
+    <rect x="56" y="86" width="70" height="5" fill="currentColor"></rect>
+    <rect x="118" y="91" width="4" height="27" fill="currentColor"></rect>
+    <path d="M78 86 L78 80 L98 80 L98 86 Z" style="fill: var(--glow)"></path>
+    <path d="M96 118 L98 100 L114 100 L116 118 Z" style="fill: var(--sil2)"></path>
+    <path d="M101 100 q5 -8 10 0" fill="none" style="stroke: var(--sil2)" stroke-width="2"></path>
+    <rect x="24" y="96" width="32" height="4" style="fill: var(--sil2)"></rect>
+    <path d="M28 100 L26 118 M52 100 L54 118" fill="none" style="stroke: var(--sil2)" stroke-width="3"></path>
+    <circle cx="38" cy="30" r="5" fill="currentColor"></circle>
+    <circle cx="44" cy="40" r="10" fill="currentColor"></circle>
+    <path d="M28 98 C28 72 34 56 44 56 C54 56 60 68 62 80 L62 98 Z" fill="currentColor"></path>
+    <path d="M56 66 L76 62" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"></path>
+    <rect x="75" y="52" width="10" height="16" rx="2" style="fill: var(--glow)"></rect>
+  </symbol>
+  <symbol id="s-bedside" viewBox="0 0 140 118">
+    <rect x="54" y="80" width="78" height="14" fill="currentColor"></rect>
+    <rect x="124" y="56" width="8" height="50" fill="currentColor"></rect>
+    <rect x="58" y="94" width="5" height="24" fill="currentColor"></rect>
+    <ellipse cx="112" cy="74" rx="12" ry="6" style="fill: var(--sil2)"></ellipse>
+    <circle cx="111" cy="68" r="9" fill="currentColor"></circle>
+    <path d="M62 80 C72 70 98 70 102 80 Z" fill="currentColor"></path>
+    <circle cx="34" cy="50" r="10" fill="currentColor"></circle>
+    <path d="M20 100 C20 76 26 64 36 64 C46 64 50 76 50 100 Z" fill="currentColor"></path>
+    <rect x="16" y="98" width="40" height="5" fill="currentColor"></rect>
+    <path d="M20 103 L20 118 M52 103 L52 118" fill="none" stroke="currentColor" stroke-width="3"></path>
+    <path d="M46 76 L66 80" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"></path>
+  </symbol>
+  <symbol id="s-together" viewBox="0 0 140 118">
+    <rect x="20" y="82" width="100" height="5" fill="currentColor"></rect>
+    <rect x="28" y="87" width="4" height="31" fill="currentColor"></rect>
+    <rect x="108" y="87" width="4" height="31" fill="currentColor"></rect>
+    <rect x="64" y="64" width="9" height="18" rx="2" style="fill: var(--glow)"></rect>
+    <path d="M70 64 L74 54" fill="none" style="stroke: var(--glow)" stroke-width="2" stroke-linecap="round"></path>
+    <path d="M23 46 C23 34 45 34 45 46 Z" fill="currentColor"></path>
+    <circle cx="34" cy="48" r="10" fill="currentColor"></circle>
+    <path d="M18 82 C18 66 24 60 34 60 C44 60 50 66 50 82 Z" fill="currentColor"></path>
+    <path d="M114 40 C122 42 124 52 120 58 C118 52 116 48 112 46 Z" fill="currentColor"></path>
+    <circle cx="106" cy="46" r="10" fill="currentColor"></circle>
+    <path d="M92 82 C92 64 98 58 106 58 C114 58 120 64 120 82 Z" fill="currentColor"></path>
+    <path d="M94 70 C84 74 70 76 52 76" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"></path>
+  </symbol>
+  <symbol id="s-soup" viewBox="0 0 140 118">
+    <rect x="72" y="80" width="56" height="38" style="fill: var(--sil2)"></rect>
+    <circle cx="84" cy="90" r="2.5" style="fill: var(--glow)"></circle>
+    <circle cx="96" cy="90" r="2.5" style="fill: var(--glow)"></circle>
+    <path d="M80 80 L80 62 L114 62 L114 80 Z" fill="currentColor"></path>
+    <rect x="74" y="64" width="6" height="4" fill="currentColor"></rect>
+    <rect x="114" y="64" width="6" height="4" fill="currentColor"></rect>
+    <path d="M88 56 q-4 -6 0 -12 M98 56 q-4 -6 0 -12 M108 56 q-4 -6 0 -12" fill="none" style="stroke: var(--sil2)" stroke-width="2.2" stroke-linecap="round"></path>
+    <circle cx="36" cy="26" r="5" fill="currentColor"></circle>
+    <circle cx="44" cy="34" r="10" fill="currentColor"></circle>
+    <path d="M28 118 C28 76 34 50 46 50 C58 50 64 76 64 118 Z" fill="currentColor"></path>
+    <path d="M58 62 C70 60 80 58 90 58" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"></path>
+    <path d="M90 58 L94 70" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+  </symbol>
+</svg>
+
+<div class="sky-zone">
+<header class="topbar">
+  <div class="wrap mono"><span>icom × Nutricia</span><span>Путеводитель по инструментам icom · 2027</span></div>
+</header>
+
+<section class="intro" aria-labelledby="page-title">
+  <div class="wrap">
+    <h1 id="page-title">Дом, где <em>не спят</em></h1>
+    <p class="intro-lead">Пять этажей, пять этапов жизни мамы. В каждом светящемся окне момент, когда ей нужна помощь. Бренд Nutricia и технологические решения icom — всегда рядом.</p>
+    <p class="intro-hint">Нажмите на окно, чтобы прочитать историю и посмотреть рекомендацию по инструментарию</p>
+  </div>
+</section>
+
+<section class="scene" aria-label="Дом и открытое окно">
+  <div class="wrap">
+    <div class="house">
+      <svg class="sky" viewBox="0 0 580 150" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <defs>
+          <radialGradient id="sunglow">
+            <stop offset="0" stop-color="#FFD9A0" stop-opacity="0.85"></stop>
+            <stop offset="1" stop-color="#FFD9A0" stop-opacity="0"></stop>
+          </radialGradient>
+        </defs>
+        <circle cx="452" cy="150" r="96" fill="url(#sunglow)"></circle>
+        <circle cx="452" cy="150" r="38" fill="#FFD08A"></circle>
+        <path d="M40 104 H190 M84 116 H232 M300 62 H404" fill="none" stroke="#F6C3A4" stroke-width="5" stroke-linecap="round" opacity="0.45"></path>
+        <circle class="star" cx="96" cy="30" r="2.2" fill="#F3EEDF"></circle>
+      </svg>
+      <div class="roof"></div>
+      <div class="building" id="building"></div>
+      <div class="ground"></div>
+    </div>
+    <article class="panel" id="panel" aria-live="polite"></article>
+  </div>
+</section>
+</div>
+
+<section class="list" aria-labelledby="list-title">
+  <div class="wrap">
+    <h2 class="section-title" id="list-title">Все окна</h2>
+    <p class="section-lead">Одиннадцать моментов по этажам, сверху вниз: от ожидания малыша до заботы о родителях</p>
+    <div class="floors" id="floors"></div>
+  </div>
+</section>
+
+<section class="kit" aria-labelledby="kit-title">
+  <div class="wrap">
+    <h2 class="section-title" id="kit-title">Все инструменты icom</h2>
+    <p class="section-lead">Восемь инструментов и окна, в которых они помогают брендам Nutricia</p>
+    <div class="kit-grid" id="kit"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <p>Бренды, задачи и цифры взяты из брифа Nutricia на 2027 год и ответов на вопросы агентств</p>
+    <span class="mono">icom × Nutricia · 2026</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Tool links live here
+  var TOOLS = {
+    video:    { name: 'ALL-VIDEO Planner', desc: 'Планирование видеокампаний: площадки, бюджет и прогноз охвата до запуска', url: 'https://videoplanner-pi.vercel.app/' },
+    quality:  { name: 'Калькулятор качества контакта', desc: 'Рейтинг медиаканалов и форматов по качеству контакта', url: 'https://izumkina.github.io/mediachannelsranking/' },
+    vertical: { name: 'Вертикальные видео от icom', desc: 'Размещения в эдитах и вертикальный OLV', url: 'tools/vertical-video.html' },
+    ai:       { name: 'AI-агент ПульсГипотез', desc: 'Автоматизирует и оптимизирует аукционные размещения в digital-медийке', url: 'https://izumkina.github.io/hypopulsedomru/', kind: 'case' },
+    sov:      { name: 'SOV Analytics Tool', desc: 'Доля рекламы бренда в категории и активность конкурентов по месяцам', url: 'tools/sov-demo.html' },
+    neuro:    { name: 'Нейроанализ креативов', desc: 'Прогноз внимания к ролику или баннеру до выхода: тепловые карты и Attention Score', url: 'https://app.powerbi.com/view?r=eyJrIjoiYTFkYzNlNjAtOGI4My00ZjhmLWEyNzMtMjEwOTZlYmQwMzZkIiwidCI6ImIzZTlmOGIxLTIzY2MtNGM3NC05Yzc2LTg5N2QzNzI5MzUzZCIsImMiOjl9' },
+    reviews:  { name: 'Анализ отзывов', desc: 'Отзывы с маркетплейсов и аптечных сайтов: о чём пишут покупатели и на что жалуются', url: 'tools/otzyvy-demo.html' },
+    ecom:     { name: 'Ecom Boost', desc: 'Продвижение в онлайн-аптеках и на маркетплейсах: позиции в поиске и продажи по SKU', url: 'tools/ecom-boost.html', kind: 'case' }
+  };
+  var ORDER = ['video', 'quality', 'vertical', 'ai', 'sov', 'neuro', 'reviews', 'ecom'];
+
+  var FLOORS = { 5: 'Ждём малыша', 4: 'Первые месяцы', 3: 'Малышу год', 2: 'После года', 1: 'Забота о родителях' };
+
+  var WINDOWS = [
+    { id: 'okno-2240', floor: 5, col: 2, time: '22:40', tone: 'warm', fig: 's-pregnant', title: 'Не спится на 36-й неделе',
+      story: 'Она читает про кормление и запоминает, кому доверять. 70% будущих мам ищут эту информацию ещё до родов, а смеси до года мы не рекламируем: знакомим с брендом через экспертизу.',
+      brands: ['Nutrilon'],
+      rx: [['quality', 'Каналы и форматы, где беременные смотрят рекламу внимательно'], ['neuro', 'Проверяем, удержит ли ролик внимание, ещё до выхода в эфир']] },
+    { id: 'okno-0310', floor: 4, col: 1, time: '03:10', tone: 'warm', fig: 's-feeding', title: 'Ночное кормление',
+      story: 'Малыш ест, мама держит телефон одной рукой и ищет ответы о кормлении. Чат-бот в MAX отвечает в любое время, и ему нужен быстрый рост регистраций.',
+      brands: ['Чат-бот в MAX'],
+      rx: [['ai', 'Снижает стоимость регистрации в боте на аукционах'], ['quality', 'Мобильные форматы, которые замечают ночью']] },
+    { id: 'okno-1940', floor: 4, col: 2, time: '19:40', tone: 'warm', fig: 's-colic', title: 'Колики, второй час',
+      story: 'Колики обычно усиливаются к вечеру. Больше 60% мам при коликах выбирают комфорт-смеси. Смеси до года в рекламе не показываем, поэтому здесь работают советы педиатров.',
+      brands: ['Nutrilon Comfort', 'Малютка Комфорт'],
+      rx: [['vertical', 'Советы при коликах в вертикальном OLV по вечерам'], ['reviews', 'О чём мамы пишут про колики и комфорт-смеси']] },
+    { id: 'okno-1100', floor: 4, col: 3, time: '11:00', tone: 'day', fig: 's-allergist', title: 'После приёма у аллерголога',
+      story: 'У малыша аллергия на белок коровьего молока, впереди курс. Сейчас его прерывают в среднем через 4,2 месяца, цель 6 месяцев и дольше. Помогает программа для мам.',
+      brands: ['Nutrilon Pepti'],
+      rx: [['ai', 'Регистрации в программе для мам по разумной цене'], ['reviews', 'Почему мамы бросают курс на 4-м месяце']] },
+    { id: 'okno-2130', floor: 3, col: 1, time: '21:30', tone: 'cool', fig: 's-tv', title: 'Сериал после отбоя',
+      story: 'Малышу год, пора на третью ступень. В этот момент 29% мам меняют бренд. Весной Nutrilon выходит в новой упаковке с формулой Nutribiotik.',
+      brands: ['Nutrilon'],
+      rx: [['video', 'Площадки, бюджет и прогноз охвата запуска в OLV и Smart TV'], ['sov', 'Сколько в эфире NAN, Nestogen и Nutrilak по месяцам']] },
+    { id: 'okno-1830', floor: 3, col: 3, time: '18:30', tone: 'warm', fig: 's-grandma', title: 'Бабушка в гостях',
+      story: '82% мам в 3–4 месяца узнают о кормлении от родственников и друзей. Малютка после ребрендинга говорит и с мамой, и с бабушкой.',
+      brands: ['Малютка'],
+      rx: [['neuro', 'Attention Score ролика о ребрендинге до выхода'], ['vertical', 'Ребрендинг в эдитах VK и OK']] },
+    { id: 'okno-0815', floor: 2, col: 2, time: '08:15', tone: 'day', fig: 's-picky', title: 'Ещё ложечку',
+      story: 'Ребёнок отворачивается от тарелки, мама ищет «ребёнок плохо ест». Задача Nutrinidrink: удвоить долю в слабо развитой категории.',
+      brands: ['Nutrinidrink'],
+      rx: [['ai', 'Точный аукцион для бюджета 7 млн ₽'], ['reviews', 'Что родители пишут о Малоежке, Здоровейке и Nutrinidrink']] },
+    { id: 'okno-2010', floor: 2, col: 3, time: '20:10', tone: 'warm', fig: 's-receipt', title: 'Заказ в приложении',
+      story: 'После 16 месяцев 59% мам думают отказаться от смеси. 30% детских смесей покупают онлайн, и кэшбэк Nutriclub даёт повод остаться в категории дольше.',
+      brands: ['Nutriclub', 'Nutrilon', 'Малютка'],
+      rx: [['ecom', 'Позиции смесей в поиске онлайн-аптек и маркетплейсов, продажи по SKU'], ['ai', 'Аукционы для регистраций в Nutriclub и повторных покупок']] },
+    { id: 'okno-1500', floor: 1, col: 1, time: '15:00', tone: 'day', fig: 's-bedside', title: 'У папы после инсульта',
+      story: 'Восстановление идёт курсом: клинический эффект Nutridrink 200 наступает при приёме не меньше 21 дня, 1–3 упаковки в день. Главный конкурент Nutrien переманивает ценой, а 80% спецпитания покупают в онлайн-аптеках и на маркетплейсах.',
+      brands: ['Nutridrink 200'],
+      rx: [['ecom', 'Позиции Nutridrink против Nutrien в поиске онлайн-аптек и маркетплейсов'], ['reviews', 'Почему покупатели выбирают Nutridrink или Nutrien'], ['video', 'Охват аудитории 35+ в OLV и Smart TV']] },
+    { id: 'okno-1320', floor: 1, col: 2, time: '13:20', tone: 'day', fig: 's-together', title: 'Перед курсом лечения',
+      story: 'Каждый год около 700 тыс. новых онкодиагнозов. Ухаживающих в 1,5 раза больше, чем пациентов, и решение о питании часто принимают они.',
+      brands: ['Nutridrink Compact Protein'],
+      rx: [['quality', 'Бережные форматы для разговора о болезни'], ['sov', 'Активность Nutrien, Fresubin и Leovit по месяцам']] },
+    { id: 'okno-1230', floor: 1, col: 3, time: '12:30', tone: 'day', fig: 's-soup', title: 'Суп для папы',
+      story: 'Папа почти не ест. Nutrison с нейтральным вкусом можно добавить в суп или кашу, и порция станет сытнее по белку и энергии.',
+      brands: ['Nutrison'],
+      rx: [['vertical', 'Рецепты с Nutrison в вертикальном видео'], ['quality', 'Каналы, где близкие пожилых людей смотрят рекламу внимательно']] }
+  ];
+
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  function action(t) {
+    return t.url
+      ? '<a class="rx-link" href="' + esc(t.url) + '" target="_blank" rel="noopener">' + (t.kind === 'case' ? 'Открыть кейс' : 'Открыть') + ' <span aria-hidden="true">→</span></a>'
+      : '<span class="rx-demo">Демо на встрече</span>';
+  }
+  function tag(t) { return t.kind === 'case' ? ' <span class="rx-tag">кейс</span>' : ''; }
+  function byId(id) { for (var i = 0; i < WINDOWS.length; i++) if (WINDOWS[i].id === id) return WINDOWS[i]; return null; }
+
+  // building: floors top to bottom, three windows each, unlit cells stay dark
+  var b = '';
+  [5, 4, 3, 2, 1].forEach(function (f) {
+    b += '<div class="floor"><div class="plate" title="' + esc(FLOORS[f]) + '"><b>' + f + '</b><span>этаж</span></div>';
+    for (var c = 1; c <= 3; c++) {
+      var w = WINDOWS.filter(function (x) { return x.floor === f && x.col === c; })[0];
+      if (w) {
+        b += '<div class="cell"><button class="win" type="button" data-id="' + w.id + '" data-tone="' + w.tone + '" aria-pressed="false" aria-label="' + esc(w.time + ', ' + w.title) + '">' +
+          '<span class="glass"><svg viewBox="0 0 140 118" aria-hidden="true"><use href="#' + w.fig + '"></use></svg></span>' +
+          '<span class="win-time">' + w.time + '</span></button></div>';
+      } else {
+        b += '<div class="cell"><span class="glass"></span><span class="cell-gap"></span></div>';
+      }
+    }
+    b += '</div>';
+  });
+  document.getElementById('building').innerHTML = b;
+
+  var panel = document.getElementById('panel');
+  var current = null;
+
+  function select(id, scroll) {
+    var w = byId(id);
+    if (!w) return;
+    current = w;
+    Array.prototype.forEach.call(document.querySelectorAll('.win'), function (el) {
+      el.setAttribute('aria-pressed', el.getAttribute('data-id') === id ? 'true' : 'false');
+    });
+    var i = WINDOWS.indexOf(w);
+    var prev = WINDOWS[(i - 1 + WINDOWS.length) % WINDOWS.length];
+    var next = WINDOWS[(i + 1) % WINDOWS.length];
+    panel.setAttribute('data-tone', w.tone);
+    panel.innerHTML =
+      '<span class="mono panel-meta">Окно ' + w.time + ' · ' + w.floor + ' этаж · ' + esc(FLOORS[w.floor]) + '</span>' +
+      '<h2>' + esc(w.title) + '</h2>' +
+      '<p class="panel-story">' + esc(w.story) + '</p>' +
+      '<div class="chips">' + w.brands.map(function (n) { return '<span class="chip">' + esc(n) + '</span>'; }).join('') + '</div>' +
+      '<ul class="rx-list">' + w.rx.map(function (r) {
+        var t = TOOLS[r[0]];
+        return '<li class="rx"><div class="rx-text"><span class="mono rx-label">Инструмент icom</span><p class="rx-name">' + esc(t.name) + tag(t) + '</p><p class="rx-why">' + esc(r[1]) + '</p></div>' + action(t) + '</li>';
+      }).join('') + '</ul>' +
+      '<div class="panel-nav"><button type="button" data-go="' + prev.id + '"><span aria-hidden="true">←</span> ' + prev.time + '</button><button type="button" data-go="' + next.id + '">' + next.time + ' <span aria-hidden="true">→</span></button></div>';
+    try { history.replaceState(null, '', '#' + id); } catch (e) {}
+    if (scroll && window.matchMedia('(max-width: 960px)').matches) {
+      var smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      panel.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+    }
+  }
+
+  document.getElementById('building').addEventListener('click', function (e) {
+    var btn = e.target.closest('.win');
+    if (btn) select(btn.getAttribute('data-id'), true);
+  });
+  panel.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-go]');
+    if (btn) select(btn.getAttribute('data-go'), false);
+  });
+
+  // list of every window, grouped by floor
+  document.getElementById('floors').innerHTML = [5, 4, 3, 2, 1].map(function (f) {
+    var rows = WINDOWS.filter(function (w) { return w.floor === f; }).sort(function (a, b) { return a.col - b.col; }).map(function (w) {
+      var tools = w.rx.map(function (r) { return TOOLS[r[0]].name; }).join(' · ');
+      return '<button class="row" type="button" data-pick="' + w.id + '"><span class="row-time">' + w.time + '</span>' +
+        '<span><span class="row-title">' + esc(w.title) + ' · ' + esc(w.brands.join(', ')) + '</span><br><span class="row-sub">' + esc(tools) + '</span></span></button>';
+    }).join('');
+    return '<div class="floor-block"><h3>' + f + ' этаж · ' + esc(FLOORS[f]) + '</h3>' + rows + '</div>';
+  }).join('');
+
+  // icom kit: every tool and the windows it is prescribed in
+  document.getElementById('kit').innerHTML = ORDER.map(function (key) {
+    var t = TOOLS[key];
+    var used = WINDOWS.filter(function (w) { return w.rx.some(function (r) { return r[0] === key; }); })
+      .map(function (w) { return '<button type="button" data-pick="' + w.id + '" aria-label="Открыть окно ' + w.time + ', ' + esc(w.title) + '">' + w.time + '</button>'; }).join('');
+    return '<article class="tool"><h3>' + esc(t.name) + tag(t) + '</h3><p>' + esc(t.desc) + '</p><div class="tool-used">' + used + '</div>' + action(t) + '</article>';
+  }).join('');
+
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-pick]');
+    if (!btn) return;
+    select(btn.getAttribute('data-pick'), false);
+    var smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var target = window.matchMedia('(max-width: 960px)').matches ? panel : document.querySelector('.scene');
+    target.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+  });
+
+  var start = location.hash.slice(1);
+  select(byId(start) ? start : 'okno-1940', false);
+})();
+</script>
+
+</body>
+</html>
